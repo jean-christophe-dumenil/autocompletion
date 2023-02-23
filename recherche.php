@@ -20,7 +20,7 @@
 	
 	// Récupération des résultats de la recherche
 	$search = isset($_GET['search']) ? $_GET['search'] : '';
-	$stmt = $conn->prepare('SELECT * FROM pokemon WHERE nom LIKE :search ORDER BY LOCATE(:search, nom), nom ASC');
+	$stmt = $conn->prepare('SELECT * FROM pokemon WHERE nom LIKE :search ORDER BY LOCATE(:search, nom)');
 	$stmt->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
 	$stmt->execute();
 	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
